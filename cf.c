@@ -27,23 +27,6 @@ uint8_t bufferArray[256];
 uint8_t bufferPointer = 0;
 char instructions[256];
 
-void findAllOccurrences(char* str, char targetChar) {
-    printf("Occurrences of '%c' in the string:\n", targetChar);
-    int found = 0; // Flag to check if any occurrence was found
-
-    for (int i = 0; i < 256; i++) {
-        if (str[i] == targetChar) {
-            printf("Found at index: %d\n", i);
-            found++;
-        }
-        if (str[i] == 0) { break; }
-    }
-
-    if (!found) {
-        printf("No occurrences found.\n");
-    }
-}
-
 int doInstruction(char instruction, uint8_t index) {
   if (instruction == 0x3E) {
     bufferPointer++;
@@ -54,7 +37,7 @@ int doInstruction(char instruction, uint8_t index) {
   } else if (instruction == 0x2D) {
     bufferArray[bufferPointer]--;
   } else if (instruction == 0x2E) {
-    printf("%d ", bufferArray[bufferPointer]);
+    printf("%d", bufferArray[bufferPointer]);
   } else if (instruction == 0x21) {
     printf("%c", bufferArray[bufferPointer]);
   } else if (instruction == 0x2C) {
